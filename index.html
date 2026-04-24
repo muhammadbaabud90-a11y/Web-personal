@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Abang Nona - Kue Cubit Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF8C00;
+            --secondary: #25D366; /* Warna WhatsApp */
+            --matcha: #79a43a;
+            --chocolate: #4e342e;
+            --light: #fff9f0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: #333;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #FF8C00 0%, #ffb347 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* MENU GRID */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-body { padding: 20px; }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        /* TOMBOL */
+        .btn {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Quicksand', sans-serif;
+            transition: 0.3s;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .btn-add { background: var(--primary); color: white; }
+        .btn-add:hover { background: #e67e00; }
+
+        /* KERANJANG */
+        .cart {
+            margin-top: 50px;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #fffbf5;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .btn-remove {
+            background: #ffeded;
+            color: #ff4757;
+            width: auto;
+            padding: 5px 15px;
+        }
+
+        .checkout-section {
+            text-align: right;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #eee;
+        }
+
+        .btn-wa {
+            background: var(--secondary);
+            color: white;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: auto;
+            padding: 15px 40px;
+        }
+
+        .btn-wa:hover { background: #1ebd5b; transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Web Abang Nona</h1>
+    <p>Jajanan Tradisional, Rasa Internasional</p>
+</header>
+
+<div class="container">
+    <div class="product-grid">
+        <div class="card">
+            <img src="C:\Users\Admin\Documents\web abang nona\img\chocochip.jpg" alt="Kue Cubit Chocochip"> width
+            <div class="card-body"> 
+                <h3 style="color: var(--chocolate);">Cubit Chocochip</h3>
+                <p>Toping cokelat crunchy yang meleleh di mulut.</p>
+                <p class="price">Rp 15.000</p>
+                <button class="btn btn-add" onclick="addToCart('Chocochip', 15000)">+ Tambah Keranjang</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="C:\Users\Admin\Documents\web abang nona\img\matcha.jpg" alt="Kue Cubit Matcha">
+            <div class="card-body">
+                <h3 style="color: var(--matcha);">Cubit Matcha</h3>
+                <p>Sensasi teh hijau Jepang yang menenangkan.</p>
+                <p class="price">Rp 18.000</p>
+                <button class="btn btn-add" onclick="addToCart('Matcha', 18000)">+ Tambah Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h2 style="text-align: center; color: var(--primary);">🛒 Pesanan Abang & Nona</h2>
+        <div id="cart-list">
+            <p style="text-align: center; color: #999;">Keranjang masih kosong nih...</p>
+        </div>
+        
+        <div class="checkout-section">
+            <h3 style="margin-bottom: 20px;">Total Tagihan: <span id="total-price" style="color: var(--primary);">Rp 0</span></h3>
+            <button class="btn btn-wa" onclick="sendToWhatsApp()">
+                💬 Pesan via WhatsApp
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer style="text-align: center; padding: 40px; color: #888;">
+    &copy; 2026 <strong>Web Abang Nona</strong>. Dibuat dengan penuh rasa manis.
+</footer>
+
+<script>
+    let cart = [];
+    let totalPrice = 0;
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        renderCart();
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        renderCart();
+    }
+
+    function renderCart() {
+        const cartList = document.getElementById('cart-list');
+        const totalPriceDisplay = document.getElementById('total-price');
+        
+        if (cart.length === 0) {
+            cartList.innerHTML = '<p style="text-align: center; color: #999;">Keranjang masih kosong nih...</p>';
+            totalPrice = 0;
+        } else {
+            cartList.innerHTML = '';
+            totalPrice = 0;
+            cart.forEach((item, index) => {
+                totalPrice += item.price;
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <span><strong>${item.name}</strong> - Rp ${item.price.toLocaleString('id-ID')}</span>
+                    <button class="btn btn-remove" onclick="removeFromCart(${index})">Hapus</button>
+                `;
+                cartList.appendChild(div);
+            });
+        }
+        totalPriceDisplay.innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+    }
+
+    function sendToWhatsApp() {
+        if (cart.length === 0) {
+            alert("Keranjang masih kosong, Abang Nona!");
+            return;
+        }
+
+        const phoneNumber = "6282113741116"; // GANTI DENGAN NOMOR WA KAMU
+        let message = "Halo Web Abang Nona, saya mau pesan:%0A%0A";
+        
+        cart.forEach((item, index) => {
+            message += `${index + 1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`;
+        });
+
+        message += `%0A*Total: Rp ${totalPrice.toLocaleString('id-ID')}*%0A%0AMohon diproses ya!`;
+        
+        const waLink = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(waLink, '_blank');
+    }
+</script>
+
+</body>
+</html>
